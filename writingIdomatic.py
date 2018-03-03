@@ -45,4 +45,19 @@ value = 20 if foo else 10
 print(value) # also prints 20 but much cleaner evaluation
 
 
-# Notes:    Use 'enumarate' intead of creating an index variable
+# Notes:    Use 'enumerate' instead of creating an index variable (just like the use in 'for' loops)
+
+
+# Notes:    Use the 'in' keyword to iterate over an iterable (just like all 'for' loops)
+
+
+# Notes:    For loops can have an 'else' clause that is executed if the iterator is exhausted.
+#           It is not executed if the loop is ended prematurely
+
+name_list = ['Andrew', 'Thomas', 'Amir', 'Brett', 'Kieran']
+for name in name_list:
+    for char in name:
+        if char == 'x':
+            print('Weird Name!')
+    else:
+        print('All names are normal!')
