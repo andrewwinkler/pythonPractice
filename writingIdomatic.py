@@ -9,7 +9,7 @@ print("\n--Let's Practice!\n--")
 
 # Notes:    Chain arguments in the if statements if can
 
-# Notes:    Don’t repeat a comparison in an if statement, use a list or set when you can. ‘x’ in ‘some_list’ can return true or false
+# Notes:    Don’t repeat a '==' comparison in an if statement, use a list or set when you can. ‘x’ in ‘some_list’ can return true or false
 # Ex:
 
 name = 'Tom'
