@@ -16,13 +16,13 @@ print("\n--Let's Practice!--\n")
 # Ex:
 
 is_generic_name = False
-name = 'Tom'
-if name == 'Tom' or name == 'Dick' or name == 'Harry':
+name = 'Thomas'
+if name == 'Thomas' or name == 'Amir' or name == 'Brett':
     is_generic_name = True
 print(is_generic_name) # prints 'True'
 
-name = 'Tom'
-is_generic_name = name in ('Tom', 'Dick', 'Harry')
+name = 'Thomas'
+is_generic_name = name in ('Thomas', 'Amir', 'Brett')
 print(is_generic_name) # also prints 'True'
 
 
@@ -34,14 +34,14 @@ print(is_generic_name) # also prints 'True'
 # Notes:    Use 'if' and 'else' as short ternary operators
 # Ex:
 
-foo = True
+some_bool = True
 value = 10
-if foo:
+if some_bool:
     value = 20
 print(value) # prints 20
 
-foo = True
-value = 20 if foo else 10
+some_bool = True
+value = 20 if some_bool else 10
 print(value) # also prints 20 but much cleaner evaluation
 
 
