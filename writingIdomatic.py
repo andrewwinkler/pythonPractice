@@ -24,3 +24,22 @@ print(is_generic_name) # prints 'True'
 name = 'Tom'
 is_generic_name = name in ('Tom', 'Dick', 'Harry')
 print(is_generic_name) # also prints 'True'
+
+
+# Notes:    Use the implicit 'True' from objects instead of ' if X == True'
+#           Same for 'False', if a list is empty 'if my_list' will evaluate to false
+#           'is not None' is important too as it will still hold true for '0' (if you are evaluating an index for example)
+
+
+# Notes:    Use if and else as short ternary operators
+# Ex:
+
+foo = True
+value = 10
+if foo:
+    value = 20
+print(value) # prints 20
+
+foo = True
+value = 20 if foo else 10
+print(value) # also prints 20 but much cleaner evaluation
