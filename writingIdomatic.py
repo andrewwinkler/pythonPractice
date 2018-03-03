@@ -67,3 +67,4 @@ for name in name_list:
             print('Weird Name!')
     else: # matches the 'for' not the 'if'!
         print('All names are normal!')
+        
