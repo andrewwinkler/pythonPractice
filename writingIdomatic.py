@@ -17,14 +17,15 @@ print("\n--Let's Practice!--\n")
 # Notes:    Don’t repeat a '==' comparison in an 'if' statement, use a list or set when you can. ‘x’ in ‘some_list’ can return true or false
 # Ex:
 
+NAME = 'Thomas'
+
 is_generic_name = False
-name = 'Thomas'
-if name == 'Thomas' or name == 'Amir' or name == 'Brett':
+if NAME == 'Thomas' or NAME == 'Amir' or NAME == 'Brett':
     is_generic_name = True
 print(is_generic_name) # prints 'True'
 
-name = 'Thomas'
-is_generic_name = name in ('Thomas', 'Amir', 'Brett')
+is_generic_name = False
+is_generic_name = NAME in ('Thomas', 'Amir', 'Brett')
 print(is_generic_name) # also prints 'True'
 
 
@@ -60,7 +61,7 @@ print(value) # also prints 20 but much cleaner evaluation
 #           It is not executed if the loop is ended prematurely
 # Ex:
 
-name_list = ['Andrew', 'Thomas', 'Amir', 'Brett', 'Kieran']
+name_list = ['Andrew', NAME, 'Amir', 'Brett', 'Kieran']
 for name in name_list:
     for char in name:
         if char == 'x':
