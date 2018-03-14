@@ -93,9 +93,27 @@ print(func(30))
 # Notes:    Return statements actually return the evaluation results of whatever expression you put in there.
 # Ex:       
 
-def all_equal(a, b, c)
+def all_equal(a, b, c):
     return a == b == c # This is the same as if( a == b == c ) and will return True/False
 
 
-# Notes:    Use optional parameters to give methods more flexibility but also not burdening the user of the method
+# Notes:    Use optional parameters to give methods more flexibility while at the time not burdening the user of the method
 # Ex: None
+
+
+# Notes:    Using *agrs and **kwargs as parameters allows us to have an arbitrary list of positional parameters
+#           and/or keyword parameters. It also allows for backwards compatibility when adding additional method parameters.
+# Ex: 
+
+def for_console_output(func):
+    def wrapper(*args, **kwargs):
+        print('----------')
+        print(str(func(*args, **kwargs)))
+        print('----------')
+    return wrapper
+
+@for_console_output
+def add(x, y):
+    return x + y
+
+add(3, 2)
