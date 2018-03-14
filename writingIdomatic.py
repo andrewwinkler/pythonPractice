@@ -95,3 +95,7 @@ print(func(30))
 
 def all_equal(a, b, c)
     return a == b == c # This is the same as if( a == b == c ) and will return True/False
+
+
+# Notes:    Use optional parameters to give methods more flexibility but also not burdening the user of the method
+# Ex: None
