@@ -79,7 +79,7 @@ for name in name_list:
 # Notes:    Don't use a mutable object for method arguments. When the Python interpreter encounters a function definition, 
 #           default arguments are evaluated to determine their value. This evaluation, however, occurs only once. 
 #           Calling the function does not trigger another evaluation of the arguments.
-# Ex.import
+# Ex:       
 
 def func(a, b=[]):
     b.append(a)
@@ -88,3 +88,10 @@ def func(a, b=[]):
 print(func(10))
 print(func(20))
 print(func(30))
+
+
+# Notes:    Return statements actually return the evaluation results of whatever expression you put in there.
+# Ex:       
+
+def all_equal(a, b, c)
+    return a == b == c # This is the same as if( a == b == c ) and will return True/False
