@@ -74,4 +74,17 @@ for name in name_list:
             print('Weird Name!')
     else: # matches the 'for' not the 'if'!
         print('All names are normal!')
-        
+
+
+# Notes:    Don't use a mutable object for method arguments. When the Python interpreter encounters a function definition, 
+#           default arguments are evaluated to determine their value. This evaluation, however, occurs only once. 
+#           Calling the function does not trigger another evaluation of the arguments.
+# Ex.import
+
+def func(a, b=[]):
+    b.append(a)
+    return b
+
+print(func(10))
+print(func(20))
+print(func(30))
