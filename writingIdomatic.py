@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 from __future__ import print_function
+import operator as op
 
 print("\n--Let's Practice!--\n")
 
@@ -117,3 +118,38 @@ def add(x, y):
     return x + y
 
 add(3, 2)
+
+
+# Notes:    Functions can be treated as variables and thus passed to other functions and returned as results from 
+#           function calls. This is sometimes referred to as 'functional' programming. 
+# Ex:
+
+# This sequence of 4 methods can be replaced by one more generic method where you pass in an operator method 
+def print_addition_table():
+    for x in range(1,3):
+        for y in range(1, 3):
+            print(str(x + y) + '\n')
+
+def print_subtraction_table():
+    for x in range(1,3):
+        for y in range(1, 3):
+            print(str(x - y) + '\n')
+
+def print_multiplication_table():
+    for x in range(1,3):
+        for y in range(1, 3):
+            print(str(x / y) + '\n')
+
+def print_division_table():
+    for x in range(1,3):
+        for y in range(1, 3):
+            print(str(x / y) + '\n')
+
+# As soon as you start repeating something, a computer can do it better
+def print_table(operator):
+    for x in range(1, 3):
+        for y in range(1, 3):
+            print(str(operator(x, y)) + '\n')
+
+for operator in (op.add, op.sub, op.mul, op.div):
+    print_table(operator)
