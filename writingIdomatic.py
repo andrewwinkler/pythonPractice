@@ -209,3 +209,8 @@ def get_json_response(url)
     except:
         # Do whatever you want, but don't handle the exception
         raise
+
+
+# Notes:    The simply put rule of thumb for rasing exceptions is: never raise a core Python exception in your own code.
+#           If something goes wrong you and the user won't know if was from your code or any other numerous parts of
+#           the code or built in libraries that raise the exact same exception. 
