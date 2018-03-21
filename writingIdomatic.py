@@ -3,6 +3,7 @@
 
 from __future__ import print_function
 import operator as op
+import requests
 
 print("\n--Let's Practice!--\n")
 
@@ -177,10 +178,34 @@ def get_log_level(config_dict)
         return None
 
 # idiomatic
-
 def get_log_level(config_dict)
     try:
         if config_dict['ENABLE_LOGGING']:
             return config_dict['LOG_LEVEL']
     except KeyError:
         return None # if either value wasn't present a 'KeyError' will be raised so return None
+
+
+# Notes:    Avoid swallowing useful exceptions with bare except clauses. Specifying an exception is important
+#           for debugging and tracing back the error. If you need to know when an exception occurs but don't
+#           want to deal with it then use a bare 'raise' at the end of your 'except' block to re-raise the 
+#           exception. This way the the code runs and the user still gets useful information if something goes wrong. 
+# Ex.
+
+# Harmful
+def get_json_response(url)
+    try:
+        result = requests.get(url)
+        return result.json()
+    except:
+        print('Oopsies, something went wrong')
+        return None
+
+# Idiomatic
+def get_json_response(url)
+    try:
+        result = requests.get(url)
+        return result.json()
+    except:
+        # Do whatever you want, but don't handle the exception
+        raise
