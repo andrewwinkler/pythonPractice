@@ -153,3 +153,7 @@ def print_table(operator):
 
 for operator in (op.add, op.sub, op.mul, op.div):
     print_table(operator)
+
+
+# Notes:    Use 'print()' instead of 'print'. Python 3 is the future and we can't be stuck in the past
+# Ex.       None
