@@ -157,3 +157,30 @@ for operator in (op.add, op.sub, op.mul, op.div):
 
 # Notes:    Use 'print()' instead of 'print'. Python 3 is the future and we can't be stuck in the past
 # Ex.       None
+
+
+# Notes:    Exceptions are more wildly used in Python than in other languages. It can be a lot easier to write
+#           EAFP (Easier to Ask For Forgiveness) code than LBYL (Look Before You Leap) code. EAFP code is also 
+#           usually a lot easier to read than a lot of conditional statements.
+# Ex.
+
+# if, if, if
+def get_log_level(config_dict)
+    if 'ENABLE_LOGGING' in config_dict:
+        if config_dict['ENABLE_LOGGING'] !=True:
+            return None
+        elif not 'LOG_LEVEL' in config_dict:
+            return None
+        else:
+            return config_dict['LOG_LEVEL']
+    else
+        return None
+
+# idiomatic
+
+def get_log_level(config_dict)
+    try:
+        if config_dict['ENABLE_LOGGING']:
+            return config_dict['LOG_LEVEL']
+    except KeyError:
+        return None # if either value wasn't present a 'KeyError' will be raised so return None
