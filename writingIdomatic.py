@@ -250,6 +250,13 @@ for c in some_string:
 def get_formatted_user_info(user):
     return 'Name: %s, Age: %s, Sex: %s' % (user.name use.age user.sex)
 
-# Idiomatic
+# Idiomatic 
 def get_formatted_user_info(user):
     return 'Name: {user.name}, Age: {user.age}, Sex: {user.sex}'.format(user=user)
+
+
+# Notes:    Use list comprehension (generator expression) whenever you can. Use the build in 'sum' function.
+#           Use 'all' to determine of all elements of an iterable are true.
+
+
+# Notes:    Use 'xrange(10000)' insted of 'range(10000)' so that the range list is not stored in memory
