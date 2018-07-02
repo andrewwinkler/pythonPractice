@@ -221,7 +221,6 @@ def get_json_response(url):
 # Ex.
 
 # Harmful
-
 foo = 'Foo'
 bar = 'Bar'
 temp = foo
@@ -229,7 +228,6 @@ foo = bar
 bar = temp
 
 # Idiomatic
-
 foo = 'Foo'
 bar = 'Bar'
 (foo, bar) = (bar, foo)
@@ -242,3 +240,16 @@ bar = 'Bar'
 some_string = 'Andrew'
 for c in some_string:
     print(ord(c))
+
+
+# Notes:    Use .format for string formatting
+#
+# Ex:
+
+# Harmful
+def get_formatted_user_info(user):
+    return 'Name: %s, Age: %s, Sex: %s' % (user.name use.age user.sex)
+
+# Idiomatic
+def get_formatted_user_info(user):
+    return 'Name: {user.name}, Age: {user.age}, Sex: {user.sex}'.format(user=user)
