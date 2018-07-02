@@ -166,7 +166,7 @@ for operator in (op.add, op.sub, op.mul, op.div):
 # Ex.
 
 # if, if, if
-def get_log_level(config_dict)
+def get_log_level(config_dict):
     if 'ENABLE_LOGGING' in config_dict:
         if config_dict['ENABLE_LOGGING'] !=True:
             return None
@@ -174,11 +174,11 @@ def get_log_level(config_dict)
             return None
         else:
             return config_dict['LOG_LEVEL']
-    else
+    else:
         return None
 
 # idiomatic
-def get_log_level(config_dict)
+def get_log_level(config_dict):
     try:
         if config_dict['ENABLE_LOGGING']:
             return config_dict['LOG_LEVEL']
@@ -193,7 +193,7 @@ def get_log_level(config_dict)
 # Ex.
 
 # Harmful
-def get_json_response(url)
+def get_json_response(url):
     try:
         result = requests.get(url)
         return result.json()
@@ -202,7 +202,7 @@ def get_json_response(url)
         return None
 
 # Idiomatic
-def get_json_response(url)
+def get_json_response(url):
     try:
         result = requests.get(url)
         return result.json()
@@ -214,3 +214,31 @@ def get_json_response(url)
 # Notes:    The simply put rule of thumb for rasing exceptions is: never raise a core Python exception in your own code.
 #           If something goes wrong you and the user won't know if was from your code or any other numerous parts of
 #           the code or built in libraries that raise the exact same exception. 
+
+
+# Notes:    No need to use a temporary variable when swapping values
+#
+# Ex.
+
+# Harmful
+
+foo = 'Foo'
+bar = 'Bar'
+temp = foo
+foo = bar
+bar = temp
+
+# Idiomatic
+
+foo = 'Foo'
+bar = 'Bar'
+(foo, bar) = (bar, foo)
+
+
+# Notes:    Use the 'ord' function to get the ASCII value
+#
+# Ex.
+
+some_string = 'Andrew'
+for c in some_string:
+    print(ord(c))
