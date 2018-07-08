@@ -2,6 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 from __future__ import print_function
+import operator as op
+import requests
 
 print("\n--Let's Practice!--\n")
 
@@ -74,4 +76,187 @@ for name in name_list:
             print('Weird Name!')
     else: # matches the 'for' not the 'if'!
         print('All names are normal!')
-        
+
+
+# Notes:    Don't use a mutable object for method arguments. When the Python interpreter encounters a function definition, 
+#           default arguments are evaluated to determine their value. This evaluation, however, occurs only once. 
+#           Calling the function does not trigger another evaluation of the arguments.
+# Ex:       
+
+def func(a, b=[]):
+    b.append(a)
+    return b
+
+print(func(10))
+print(func(20))
+print(func(30))
+
+
+# Notes:    Return statements actually return the evaluation results of whatever expression you put in there.
+# Ex:       
+
+def all_equal(a, b, c):
+    return a == b == c # This is the same as if( a == b == c ) and will return True/False
+
+
+# Notes:    Use optional parameters to give methods more flexibility while at the time not burdening the user of the method
+# Ex: None
+
+
+# Notes:    Using *agrs and **kwargs as parameters allows us to have an arbitrary list of positional parameters
+#           and/or keyword parameters. It also allows for backwards compatibility when adding additional method parameters.
+# Ex: 
+
+def for_console_output(func):
+    def wrapper(*args, **kwargs):
+        print('----------')
+        print(str(func(*args, **kwargs)))
+        print('----------')
+    return wrapper
+
+@for_console_output
+def add(x, y):
+    return x + y
+
+add(3, 2)
+
+
+# Notes:    Functions can be treated as variables and thus passed to other functions and returned as results from 
+#           function calls. This is sometimes referred to as 'functional' programming. 
+# Ex:
+
+# This sequence of 4 methods can be replaced by one more generic method where you pass in an operator method 
+def print_addition_table():
+    for x in range(1,3):
+        for y in range(1, 3):
+            print(str(x + y) + '\n')
+
+def print_subtraction_table():
+    for x in range(1,3):
+        for y in range(1, 3):
+            print(str(x - y) + '\n')
+
+def print_multiplication_table():
+    for x in range(1,3):
+        for y in range(1, 3):
+            print(str(x / y) + '\n')
+
+def print_division_table():
+    for x in range(1,3):
+        for y in range(1, 3):
+            print(str(x / y) + '\n')
+
+# As soon as you start repeating something, a computer can do it better
+def print_table(operator):
+    for x in range(1, 3):
+        for y in range(1, 3):
+            print(str(operator(x, y)) + '\n')
+
+for operator in (op.add, op.sub, op.mul, op.div):
+    print_table(operator)
+
+
+# Notes:    Use 'print()' instead of 'print'. Python 3 is the future and we can't be stuck in the past
+# Ex.       None
+
+
+# Notes:    Exceptions are more wildly used in Python than in other languages. It can be a lot easier to write
+#           EAFP (Easier to Ask For Forgiveness) code than LBYL (Look Before You Leap) code. EAFP code is also 
+#           usually a lot easier to read than a lot of conditional statements.
+# Ex.
+
+# if, if, if
+def get_log_level(config_dict):
+    if 'ENABLE_LOGGING' in config_dict:
+        if config_dict['ENABLE_LOGGING'] !=True:
+            return None
+        elif not 'LOG_LEVEL' in config_dict:
+            return None
+        else:
+            return config_dict['LOG_LEVEL']
+    else:
+        return None
+
+# idiomatic
+def get_log_level(config_dict):
+    try:
+        if config_dict['ENABLE_LOGGING']:
+            return config_dict['LOG_LEVEL']
+    except KeyError:
+        return None # if either value wasn't present a 'KeyError' will be raised so return None
+
+
+# Notes:    Avoid swallowing useful exceptions with bare except clauses. Specifying an exception is important
+#           for debugging and tracing back the error. If you need to know when an exception occurs but don't
+#           want to deal with it then use a bare 'raise' at the end of your 'except' block to re-raise the 
+#           exception. This way the the code runs and the user still gets useful information if something goes wrong. 
+# Ex.
+
+# Harmful
+def get_json_response(url):
+    try:
+        result = requests.get(url)
+        return result.json()
+    except:
+        print('Oopsies, something went wrong')
+        return None
+
+# Idiomatic
+def get_json_response(url):
+    try:
+        result = requests.get(url)
+        return result.json()
+    except:
+        # Do whatever you want, but don't handle the exception
+        raise
+
+
+# Notes:    The simply put rule of thumb for rasing exceptions is: never raise a core Python exception in your own code.
+#           If something goes wrong you and the user won't know if was from your code or any other numerous parts of
+#           the code or built in libraries that raise the exact same exception. 
+
+
+# Notes:    No need to use a temporary variable when swapping values
+#
+# Ex.
+
+# Harmful
+foo = 'Foo'
+bar = 'Bar'
+temp = foo
+foo = bar
+bar = temp
+
+# Idiomatic
+foo = 'Foo'
+bar = 'Bar'
+(foo, bar) = (bar, foo)
+
+
+# Notes:    Use the 'ord' function to get the ASCII value
+#
+# Ex.
+
+some_string = 'Andrew'
+for c in some_string:
+    print(ord(c))
+
+
+# Notes:    Use .format for string formatting
+#
+# Ex:
+
+# Harmful
+def get_formatted_user_info(user):
+    return 'Name: %s, Age: %s, Sex: %s' % (user.name use.age user.sex)
+
+# Idiomatic 
+def get_formatted_user_info(user):
+    return 'Name: {user.name}, Age: {user.age}, Sex: {user.sex}'.format(user=user)
+
+
+# Notes:    Use list comprehension (generator expression) whenever you can. Use the build in 'sum' function.
+#           Use 'all' to determine of all elements of an iterable are true.
+
+
+# Notes:    Use 'xrange(10000)' insted of 'range(10000)' so that the range list is not stored in memory
