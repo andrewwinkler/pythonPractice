@@ -248,7 +248,7 @@ for c in some_string:
 
 # Harmful
 def get_formatted_user_info(user):
-    return 'Name: %s, Age: %s, Sex: %s' % (user.name use.age user.sex)
+    return 'Name: %s, Age: %s, Sex: %s' % (user.name, user.age, user.sex)
 
 # Idiomatic 
 def get_formatted_user_info(user):
@@ -260,3 +260,74 @@ def get_formatted_user_info(user):
 
 
 # Notes:    Use 'xrange(10000)' insted of 'range(10000)' so that the range list is not stored in memory
+
+
+# Notes:    Use dictionaries as switch statements
+# Ex: 
+
+def apply_operation(left_operand, right_operand, operator):
+    import operator as op
+    operator_mapper = {
+        '+': op.add, 
+        '-': op.sub, 
+        '*': op.mul, 
+        '/': op.truediv
+        }
+    return operator_mapper[operator](left_operand, right_operand)
+
+
+# Notes:    The dictionary 'get' method has a default parameter to return if the key is does not exist:
+#           
+#           dict.get(key, default = None)
+#           key − This is the Key to be searched in the dictionary.
+#           default − This is the Value to be returned in case key does not exist.
+
+
+# Notes:    Can use dictionary comprehension similarly to list comprehension
+#
+#           user_email = {user.name: user.email for user in users_list if user.email}
+
+
+# Notes:    When comparting data and intersecting data use sets
+#
+# Ex:
+
+# Harmful
+def get_both_popular_and_active_users():
+    # Assume the following two functions each return a list of user names
+    most_popular_users = get_list_of_most_popular_users()
+    most_active_users = get_list_of_most_active_users()
+    popular_and_active_users = []
+    for user in most_active_users:
+        if user in most_popular_users:
+            popular_and_active_users.append(user)
+    return popular_and_active_users
+
+# Idiomatic
+def get_both_popular_and_active_users():
+    # Assume the following two functions each return a list of user names
+    return(set(get_list_of_most_active_users()) & set(get_list_of_most_popular_users()))
+
+list_one = ['Manny', 'Moe', 'Jack']
+list_two = ['Larry', 'Moe', 'Curly']
+
+# Harmful
+def has_duplicate_harmful(list_one, list_two):
+    duplicate_name = False
+    for name in list_one:
+        if name in list_two:
+            duplicate_name = True
+    return duplicate_name
+
+# Idiomatic
+def has_duplicate_idiomatic(list_one, list_two):
+    return set(list_one) & set(list_two)
+
+if has_duplicate_harmful:
+    print('Duplicate')
+if has_duplicate_idiomatic:
+    print('Duplicate')
+
+# You can even use sets to just remove duplicate data from a list
+employee_surnames = list()
+unique_surnames = set(employee_surnames)
