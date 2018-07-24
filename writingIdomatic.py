@@ -2,9 +2,9 @@
 # -*- coding: UTF-8 -*-
 
 from __future__ import print_function
+from collections import namedtuple
 import operator as op
 import requests
-from collections import namedtuple
 
 print("\n--Let's Practice!--\n")
 
@@ -41,11 +41,9 @@ print(is_generic_name) # also prints 'True'
 # Notes:    Use the implicit 'True' from objects instead of 'if X == True'
 #           Same for 'False', if a list is empty 'if my_list' will evaluate to false
 #           'is not None' is important too as it will still hold true for '0' (if you are evaluating an index for example)
-# Ex: None
 
 
 # Notes:    Use 'if' and 'else' as short ternary operators
-# Ex:
 
 some_bool = True
 value = 10
@@ -59,11 +57,9 @@ print(value) # also prints 20 but much cleaner evaluation
 
 
 # Notes:    Use 'enumerate' instead of creating an index variable (just like the use in 'for' loops)
-# Ex: None
 
 
 # Notes:    Use the 'in' keyword to iterate over an iterable (just like all 'for' loops)
-# Ex: None
 
 
 # Notes:    For loops can have an 'else' clause that is executed if the iterator is exhausted.
@@ -101,7 +97,6 @@ def all_equal(a, b, c):
 
 
 # Notes:    Use optional parameters to give methods more flexibility while at the time not burdening the user of the method
-# Ex: None
 
 
 # Notes:    Using *agrs and **kwargs as parameters allows us to have an arbitrary list of positional parameters
@@ -158,13 +153,11 @@ for operator in (op.add, op.sub, op.mul, op.div):
 
 
 # Notes:    Use 'print()' instead of 'print'. Python 3 is the future and we can't be stuck in the past
-# Ex.       None
 
 
 # Notes:    Exceptions are more wildly used in Python than in other languages. It can be a lot easier to write
 #           EAFP (Easier to Ask For Forgiveness) code than LBYL (Look Before You Leap) code. EAFP code is also 
 #           usually a lot easier to read than a lot of conditional statements.
-# Ex.
 
 # if, if, if
 def get_log_level(config_dict):
@@ -191,7 +184,7 @@ def get_log_level(config_dict):
 #           for debugging and tracing back the error. If you need to know when an exception occurs but don't
 #           want to deal with it then use a bare 'raise' at the end of your 'except' block to re-raise the 
 #           exception. This way the the code runs and the user still gets useful information if something goes wrong. 
-# Ex.
+# Ex:
 
 # Harmful
 def get_json_response(url):
@@ -219,7 +212,7 @@ def get_json_response(url):
 
 # Notes:    No need to use a temporary variable when swapping values
 #
-# Ex.
+# Ex:
 
 # Harmful
 foo = 'Foo'
@@ -236,7 +229,7 @@ bar = 'Bar'
 
 # Notes:    Use the 'ord' function to get the ASCII value
 #
-# Ex.
+# Ex:
 
 some_string = 'Andrew'
 for c in some_string:
@@ -264,10 +257,10 @@ def get_formatted_user_info(user):
 
 
 # Notes:    Use dictionaries as switch statements
+#
 # Ex: 
 
 def apply_operation(left_operand, right_operand, operator):
-    import operator as op
     operator_mapper = {
         '+': op.add, 
         '-': op.sub, 
@@ -286,7 +279,9 @@ def apply_operation(left_operand, right_operand, operator):
 
 # Notes:    Can use dictionary comprehension similarly to list comprehension
 #
-#           user_email = {user.name: user.email for user in users_list if user.email}
+# Ex:
+
+# user_email = {user.name: user.email for user in users_list if user.email}
 
 
 # Notes:    When comparting data and intersecting data use sets
@@ -329,14 +324,15 @@ if has_duplicate_harmful:
 if has_duplicate_idiomatic:
     print('Duplicate')
 
-# You can even use sets to just remove duplicate data from a list
+# You can even use sets to simply remove duplicate data from a list
 employee_surnames = list()
 unique_surnames = set(employee_surnames)
 
 
-# Notes:    Use named tuple to access fields by name instead of index
+# Notes:    Use named tuples to access fields by name instead of index
 #
 # Ex:
+
 Employee = namedtuple('Employee',['first_name', 'last_name', 'department', 'manager'])
 
 
@@ -347,8 +343,9 @@ Employee = namedtuple('Employee',['first_name', 'last_name', 'department', 'mana
 #           more than one value
 
 
-# Notes:    Don't overuse calasses just to encapsulate methods, it's okay to create methods
+# Notes:    Don't overuse classes just to encapsulate methods, it's okay to create methods
 #           on their own that are importable
+
 
 # Notes:    Use 'isinstance()' when evaluting the type of an object
 
@@ -400,10 +397,10 @@ class Product(object):
 
 
 # Notes:    Use generators instead of list comprehension for expensive or 'infinite' sequences.
-#           The main difference being that a list comprehension generates a list object and fills 
+#           The main difference being that list comprehension generates a list object and fills 
 #           in all of the elements immediately. For large lists, this can be prohibitively expensive. 
-#           The generator returned by a generator expression, on the other hand, generates each element 
-#           “on-demand”
+#           The generator returned by a generator expression, on the other hand, generates each 
+#           element “on-demand”
 #
 # Ex:
 
@@ -425,6 +422,7 @@ def get_twitter_stream_for_keyword(keyword):
 
 
 # Notes:    Use __init__.py to set what is available for import
+
 
 # Notes:    Use __main__.py to invoke packages as scripts. This file is only invoked when 
 #           the -m flag is passed to the interpreter (in which case <package>.__main__ is executed 
