@@ -4,6 +4,7 @@
 from __future__ import print_function
 import operator as op
 import requests
+from collections import namedtuple
 
 print("\n--Let's Practice!--\n")
 
@@ -331,3 +332,103 @@ if has_duplicate_idiomatic:
 # You can even use sets to just remove duplicate data from a list
 employee_surnames = list()
 unique_surnames = set(employee_surnames)
+
+
+# Notes:    Use named tuple to access fields by name instead of index
+#
+# Ex:
+Employee = namedtuple('Employee',['first_name', 'last_name', 'department', 'manager'])
+
+
+# Notes:    Use '_' for unconsumed data and variables
+
+
+# Notes:    Unpack data all at once using tuples and at the same time use tuples to return
+#           more than one value
+
+
+# Notes:    Don't overuse calasses just to encapsulate methods, it's okay to create methods
+#           on their own that are importable
+
+# Notes:    Use 'isinstance()' when evaluting the type of an object
+
+
+# Notes:    Use a single underscore for 'private methods', they will not be imported if __all__
+#           is used. Use two underscores for 'private' variables, it will invoke name mangling 
+#           which changes the name to _classname__attributename when called 
+
+
+# Notes:    Use 'setters' and 'getters' like everyone else
+#
+# Ex:
+
+class Product(object):
+
+    def __init__(self, name, price):
+        self.name = name
+        self._price = price
+
+    @property
+    def price(self):
+        # now if we need to change how price is calculated, we can do it
+        # here (or in the "setter" and __init__)
+        return self._price * TAX_RATE
+
+    @price.setter
+    def price(self, value):
+        # The "setter" function must have the same name as the property
+        self._price = value
+
+
+# Notes:    Use __str__ for a human readable representation of your class and use __repr__
+#           for a machine readable representation of your class
+
+
+# Notes:    USe a context manager to ensure resources are properly managed
+#
+# Ex:
+
+# Harmful
+# file_handle = open(path_to_file, 'r')
+#     for line in file_handle.readlines():
+#         # Something
+
+# Idiomatic
+# with open(path_to_file, 'r') as file_handle:
+#         for line in file_handle:
+#             # Something
+
+
+# Notes:    Use generators instead of list comprehension for expensive or 'infinite' sequences.
+#           The main difference being that a list comprehension generates a list object and fills 
+#           in all of the elements immediately. For large lists, this can be prohibitively expensive. 
+#           The generator returned by a generator expression, on the other hand, generates each element 
+#           “on-demand”
+#
+# Ex:
+
+def get_twitter_stream_for_keyword(keyword):
+    """
+    Now, 'get_twitter_stream_for_keyword' is a generator
+    and will continue to generate Iterable pieces of data
+    one at a time until 'can_get_stream_data(user)' is
+    False (which may be never).
+    """
+
+    imaginary_twitter_api = ImaginaryTwitterAPI()
+    while imaginary_twitter_api.can_get_stream_data(keyword):
+        yield imaginary_twitter_api.get_stream(keyword)
+
+
+# Notes:    Use absolute imports instead of relative and don't use a '*' in your imports.
+#           Also use try/catch blocks to check if a package is available for import
+
+
+# Notes:    Use __init__.py to set what is available for import
+
+# Notes:    Use __main__.py to invoke packages as scripts. This file is only invoked when 
+#           the -m flag is passed to the interpreter (in which case <package>.__main__ is executed 
+#           as the main module) or when a directory or zipfile is passed as an argument to the interpreter
+
+
+# Notes:    Call sys.exit(main()) under __name__ == '__main__' and write everyone else in main() itself
